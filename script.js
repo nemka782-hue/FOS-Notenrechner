@@ -1,10 +1,11 @@
 const subjectInput = document.getElementById("subject");
 const pointsInput = document.getElementById("points");
 const addBtn = document.getElementById("addBtn");
+const clearBtn = document.getElementById("clearBtn");
 const gradeList = document.getElementById("gradeList");
 const averageDisplay = document.getElementById("average");
 
-let grades = [];
+let grades = JSON.parse(localStorage.getItem("fos_grades")) || [];
 
 function render() {
   gradeList.innerHTML = "";
@@ -31,14 +32,23 @@ addBtn.addEventListener("click", function () {
   const subject = subjectInput.value.trim();
   const points = Number(pointsInput.value);
 
-  if (subject === "" || pointsInput.value === "") {
-    alert("Bitte Fach und Punkte eingeben.");
+  if (subject === "" || pointsInput.value === "" || points < 0 || points > 15) {
+    alert("Bitte ein Fach und Punkte zwischen 0 und 15 eingeben.");
     return;
   }
 
   grades.push({ subject: subject, points: points });
+  localStorage.setItem("fos_grades", JSON.stringify(grades));
 
   subjectInput.value = "";
   pointsInput.value = "";
   render();
 });
+
+clearBtn.addEventListener("click", function () {
+  grades = [];
+  localStorage.removeItem("fos_grades");
+  render();
+});
+
+render();
