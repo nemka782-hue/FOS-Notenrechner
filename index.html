@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOS Notenrechner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Notenrechner (FOS)</h1>
+
+    <div class="input-group">
+      <input type="text" id="subject" placeholder="Fach (z.B. Mathe)">
+      <input type="number" id="points" placeholder="Punkte (0-15)" min="0" max="15">
+      <button id="addBtn">Hinzufügen</button>
+    </div>
+
+    <ul id="gradeList"></ul>
+
+    <div class="result">
+      Durchschnitt: <strong id="average">-</strong> Punkte
+    </div>
+    <button id="clearBtn" class="secondary">Alle löschen</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
